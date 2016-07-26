@@ -24,9 +24,13 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip({
         'placement': 'top'
     });
-    $('#scoreboardTab a').click(function(e) {
-        e.preventDefault();
-        $('#scoreboardTab a[href="#testcase"]').tab('show');
-        $('#scoreboardTab a[href="#penalty"]').tab('show');
+    var hash = window.location.hash;
+    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+    $('.nav-tabs a').click(function (e) {
+        $(this).tab('show');
+        var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+        window.location.hash = this.hash;
+        $('html,body').scrollTop(scrollmem);
     });
 });

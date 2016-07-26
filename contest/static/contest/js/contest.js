@@ -43,13 +43,28 @@ function noResponse() {
 
 function tabInit() {
     //initialize
-    $('#contest_tab a').click(function(e) {
-        e.preventDefault();
-        $(this).tab('show');
+	$(function(){
+        var hash = window.location.hash;
+        hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+        $('.nav-tabs a').click(function (e) {
+            $(this).tab('show');
+            var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+            window.location.hash = this.hash;
+            $('html,body').scrollTop(scrollmem);
+        });
     });
     //trigger contest_tab from overview
-    $('.overview_problem').click(function(e) {
-        $('#contest_tab li:eq(1) a').tab('show');
+    $(function(){
+        var hash = window.location.hash;
+        hash && $('table.table a[href="' + hash + '"]').tab('show');
+
+        $('.table-striped a').click(function (e) {
+            $(this).tab('show');
+            var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+            window.location.hash = this.hash;
+            $('html,body').scrollTop(scrollmem);
+        });
     });
 }
 
